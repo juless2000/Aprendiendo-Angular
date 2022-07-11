@@ -1,0 +1,147 @@
+// COMANDOS PARA INSTALAR ANGULAR
+
+// Instalar angular cli
+npm install -g @angular/cli 
+
+// Generar un proyecto de angular
+ng new NOMBRE
+
+// Crear componentes con angular cli
+Nos ubicamos dentro del proyecto
+ng g component NOMBRE
+
+// Ingresar al proyecto creado e iniciar aplicacion de angular
+ng serve
+
+ESTRUCTURA DE ARCHIVOS DE ANGULAR
+
+TSCONFIG -> Configuracion de typescript
+Readme -> Información del proyecto 
+
+PACKAGE.JSON 
+-> Fichero de configuración principal del proyecto
+-> Dependencias -> paquetes fundamentales del proyecto
+-> Podemos indicarles nuevos paquetes/dependencias para instalar en el proyecto
+
+ANGULAR.JSON
+-> Podemos indicarles assets que va a cargar nuestro proyecto
+-> Javascripts externos que querramos cargar
+-> Librerias externas que no sean propios de angular
+-> La parte de assets/styles es lo que mas se configura
+
+gitignore
+-> Fichero de Git para no commitear ciertos directorios o archivos del proyecto
+
+Carpeta node_modules
+-> Donde se descargan todos los paquetes/librerias/dependencias y todo el 
+framework en si
+
+Carpeta SRC 'primordial'
+
+main.ts -> Donde se carga toda la aplicacion de angular 
+index.html -> Pagina principal que se va a cargar en nuestro navegador
+
+	Carpeta Assets
+	-> Donde se van a guardar imagenes u otras cosas
+
+	Carpeta App -> Dentro de app se crearan diferentes componentes
+	-> module.ts -> Fichero que configura el modulo principal app
+	-> component.ts -> Clase del componente app
+	-> component.html -> Vista del componente
+	-> component.css -> Archivo css del componente
+
+CONCEPTOS TEORICOS DE ANGULAR
+
+Una aplicacion de angular está formada por componentes, plantillas, decoradores
+y metadatos, servicios, providers, directivas y por modulos.
+
+COMPONENTE
+
+-> Es un elemento que compone la aplicación web de angular 
+-> Controla un trozo de pantalla o de la vista de nuestra aplicacion 
+-> Todo lo que se ve en pantalla es controlado o gestionado por estos elementos
+-> La logica de un componente dentro de una clase de Angular, es dar soporte a 
+   una vista interactuando con ella a través de una serie de propiedades y metodos
+-> Se encarga de mediador entre la vista a través de la plantilla y la logica de 
+la app donde se incluira el modelo de datos, es decir una especie de controlador
+
+
+PLANTILLAS
+
+-> Son las vistas de los componentes, de la aplicacion.
+-> Son htmls y tienen sintaxis de angular.
+-> Trabajan con el databinding y las directivas. 
+
+DECORADORES
+
+-> Patron de diseño, vamos a configurar dinamicamente atributos/metadatos de 
+   las clases y componentes.
+
+METADATOS
+
+-> Describen una serie de caracteristicas que van a a tener los componentes 
+o clases. 
+-> Se va a encargar de decirle a Angular que el componente o clase de la 
+plantilla van juntos, entre otras cosas.
+
+SERVICIOS
+
+-> Son clases con un objetivo claro:
+	- Facilita la reutilización del codigo.
+	- Interactuar con un servicio Rest de una entidad concreta
+-> Fundamental dentro de un proyecto de angular
+-> Mediante la inyeccion de dependencias podemos usarlos en otros componentes
+
+PROVIDERS
+
+-> Servicios que nos proveen datos o funcionalidades mediante sus metodos. 
+-> Pueden ser del propio angular o creados por nosotros mismos
+
+DIRECTIVAS
+ 
+-> Son funcionalidades aplicables al DOM y a los elementos HTML en las plantillas 
+de un componente. 
+-> Son atributos HTML, ejem, una directiva puede servir para controlar que un div
+   se muestre o no.
+-> Tambien para darle un estilo a un elemento u otro, y para interactuar con el 
+   modelo de datos.
+-> Basicamente son nuevos atributos para aplicarle a cualquier cosa en nuestra
+   plantilla/vista. 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

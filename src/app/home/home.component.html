@@ -1,0 +1,40 @@
+<h2>Pagina principal</h2>
+<!-- EJEMPLO CON NGTEMPLATE
+	ngTemplate -> Directiva que permite realizar if y else en las vistas.
+
+	En el ngIf el identificado viene a false por defecto.
+
+	# -> Dentro de angular permite crear variables dentro de la vista  
+
+	#noIdentificado -> Nombre del ngTemplate
+
+	En el if, seguido de un else con punto y coma; llamamos al ngTemplate noIdentificado 
+
+<div *ngIf="identificado; else noIdentificado">
+	<h3>Estás identificado en la aplicación</h3>
+	<button (click)="unsetIdentificado()">Borrar identificación</button>
+</div>
+
+<ng-template #noIdentificado>
+	<p>No estás identificado, pulsa este boton para identificarte</p>
+	<button (click)="setIdentificado()">Identificarse</button>
+</ng-template> 
+
+ -->
+
+<!-- Si la variable identificado está a true, pasa al then y carga la template de siIdentificado, sino, pasa al la template noIdentificado -->
+<div *ngIf="identificado; then siIdentificado else noIdentificado">
+	
+</div>
+
+
+<!-- NgTemplate con then e If else-->
+<ng-template #siIdentificado>
+	<h3>Estás identificado en la aplicación</h3>
+	<button (click)="unsetIdentificado()">Borrar identificación</button>
+</ng-template>
+
+<ng-template #noIdentificado>
+	<p>No estás identificado, pulsa este boton para identificarte</p>
+	<button (click)="setIdentificado()">Identificarse</button>
+</ng-template> 

@@ -1,0 +1,8 @@
+<h1>
+	Componente de cursos
+</h1>
+<!-- Redireccionar router navigate -->
+<button (click)="redirigir()">Llevame a zapatillas</button>
+<!-- Que solo muestre el h3 en caso la propiedad nombre/followers tenga algo y sea valido -->
+<h3 *ngIf="nombre">Bienvenido {{nombre}}</h3>
+<h3 *ngIf="followers">Tus seguidores son: {{followers}}</h3>

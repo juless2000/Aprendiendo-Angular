@@ -1,0 +1,81 @@
+<!-- ngModel usarlo en una propiedad llamada userId
+	Cambiar en el input el numero de Id de usuario y que aparezca 
+ -->
+
+ <!-- 
+ 	Imprimir la fecha 
+	Pipes para fechas -> | date : 'fullDate / dd/MM/yy' -> Permite dar formato a una fecha para q se vea mas legible.
+
+	Pipe -> | uppercase -> Permite poner los textos a mayusculas
+	Pipe -> | lowercase -> Permite poner los textos a minusculas
+ -->
+{{fecha | date: 'dd/MM/yy'}}
+<br>
+{{fecha | date: 'fullDate'}}
+<br>
+{{'HOLA MUNDO USANDO PIPES ' | lowercase}}
+<br>
+
+<!-- Usando la pipe personalizada de calculadora -->
+{{ 54 | calculadora: 2}}
+
+
+<hr>>
+<input type="text" [(ngModel)]="userId" (keyup.enter)="cargaUsuario()">
+
+<!-- Si la variable user está vacia, que salga el Cargando... -->
+<div *ngIf="!user">
+	Cargando...
+</div>
+
+<div *ngIf="user">
+	<br>
+	<!-- Con la propiedad USER el cual está capturando los datos del Api, mostramos el nombre, apellido y el avatar del usuario -->
+	<img src="{{user.avatar}}" width="150px">
+	<h2>{{user.first_name + ' ' + user.last_name}}</h2>
+</div>
+
+<hr>
+
+<!-- Formulario similar al de contacto -->
+<h2>Crear usuario</h2>
+<!-- 
+#nomForm = "ngForm" -> indicamos el nombre del formulario con ngForm
+onSubmit -> capturamos el evento submit del form y le pasamos como param el nombre del formulario de ANGULAR
+
+two way databinding -> ponemos nombre a nuestros inputs con #
+Con el ngModel capturamos el objeto del componente el cual tiene la info de la peticion ajax
+
+validamos con el ngIf las propiedades que trae el new_user (name, job)
+
+disabled para que no nos permita guardar la info por si algun campo no está rellenado  
+
+ -->
+<form #newUserForm="ngForm" (ngSubmit)="onSubmit(newUserForm)">
+	
+	<p>
+		<label for="name">Nombre</label>
+		<input type="text" name="name" #name="ngModel" [(ngModel)]="new_user.name" required="">
+		<span *ngIf="name.touched && !name.valid">
+			El nombre no es válido.
+		</span>
+
+		<label for="job">Trabajo</label>
+		<input type="text" name="job" #job="ngModel" [(ngModel)]="new_user.job" required="">
+		<span *ngIf="job.touched && !job.valid">
+			El trabajo no es válido.
+		</span>
+
+	</p>
+
+	<input type="submit" value="Guardar usuario" [disabled]="!newUserForm.form.valid">
+
+</form>
+
+<!-- Mostrar informacion del formulario -->
+<!-- cuando el usuario esté guardado en la propiedad del componente -->
+<div *ngIf="usuario_guardado">
+	<h2>El usuario se ha guardado correctamente</h2>
+	<h3>{{usuario_guardado.name}}</h3>
+	<h3>{{usuario_guardado.job}}</h3>
+</div>

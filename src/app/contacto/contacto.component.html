@@ -1,0 +1,53 @@
+<h2>Formulario de Contacto</h2>
+
+<!-- 
+	#nomDeFormulario="ngForm" -> convertir el formulario normal en uno de Angular 
+	
+	ngSubmit -> capturar el evento submit del formulario, cuando haga submit, ejecutará un método q estará en el componente.
+
+	#nombre -> cada uno de los campos del formulario, será un campo del formulario de Angular, sirve para la validacion de datos
+
+	two way databinding -> [(ngModel)] -> sirve para modificar el objeto q tengo en mi modelo de datos q está en la clase del componente (contacto.usuario : ContactoUsuario) 
+
+	pattern="[a-zA-Z]+" -> que solo sean letras y se pueda repetir muchas veces
+
+	pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$" -> validacion para el email
+
+	[disabled]="" -> deshabilitar cuando se cumpla una condicion
+	
+	Vaciar el formulario -> pasarle la variable de mi formulario al metodo onSubmit como param 
+
+-->
+<form #formContacto="ngForm" (ngSubmit)="onSubmit(formContacto)">
+	<label for="nombre">Nombre</label> <br>
+	<input type="text" name="nombre" #nombre="ngModel" [(ngModel)]="contacto_usuario.nombre" required="" pattern="[a-zA-Z]+">
+	<!-- Cuando el nombre sea tocado y NO sea válido, q muestre el mensaje -->
+	<span *ngIf="nombre.touched && !nombre.valid">
+		El nombre es obligatorio.
+	</span>
+	 <br>
+
+	<label for="apellidos">Apellidos</label> <br>
+	<input type="text" name="apellidos" #apellidos="ngModel" [(ngModel)]="contacto_usuario.apellidos" required="" pattern="[a-zA-Z]+">
+	<span *ngIf="apellidos.touched && !apellidos.valid">
+		Los apellidos son obligatorios.
+	</span>
+	 <br>
+
+	<label for="email">Email</label> <br>
+	<input type="email" name="email" #email="ngModel" [(ngModel)]="contacto_usuario.email" required="" pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$">
+	<span *ngIf="!email.valid && email.touched">
+		El email es obligatorio.
+	</span>
+	 <br>
+
+	<label for="mensaje">Mensaje</label> <br>
+	<textarea name="mensaje" #mensaje="ngModel" [(ngModel)]="contacto_usuario.mensaje" required=""></textarea>
+	<span *ngIf="mensaje.touched && !mensaje.valid">
+		El mensaje es obligatorio.
+	</span>
+	 <br>
+
+	<!-- Cuando NO sea válido el formulario de contacto, que sea disabled  -->
+	<input type="submit" value="Enviar" [disabled]="!formContacto.form.valid">
+</form>

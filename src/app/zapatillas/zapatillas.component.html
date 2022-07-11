@@ -1,0 +1,110 @@
+<h2>{{titulo}}</h2>
+
+<!-- TWO WAY DATA BINDING 
+	Nos va a permitir modificar una propiedad de nuestra clase del componente, automatica e instantanea. Ademas se mostrara en la vista de igual manera. 
+-->
+<p> Añadir marca </p>
+<!-- Eventos blur | keyUp -> sobre un input, ejecuta un metodo q va a estar en la clase de nuestro componente --> 
+<p><input type="text" [(ngModel)]="mi_marca" (blur)="onBlur()" (keyup.enter)="mostrarPalabra()"></p>
+<button (click)="getMarca()">Mostrar marca</button>
+<button (click)="addMarca()">Añadir marca</button>
+<br>
+<strong>{{mi_marca}}</strong>
+
+
+<p>Compra las zapatillas de las mejores marcas</p>
+	<ul>
+		<!-- Directiva ngFor para recorrer el array de marcas
+			Acceder al indice que se recorre en el array con
+			; let indice = index
+		 -->
+		<li *ngFor="let marca of marcas; let indice = index">{{indice + ' - ' + marca}}
+		<!-- Evento click para eliminar un elemento de marcas -->
+		<button (click)="borrarMarca(indice)">Borrar marca</button>
+		</li>
+		
+	</ul>
+<p>Las deportivas que tenemos disponibles son las siguientes: </p>
+<ul>
+	<!--
+	Directiva ngFor -> Me permite hacer un For y recorrer un Array de objetos o de cualquier tipo y mostrar sus valores
+	-->	
+	<li *ngFor="let deportiva of zapatillas">
+		<!-- 
+			En el caso que la zapatilla no esté en stock, le pone el tachado,
+			sino, no le pone nada 
+
+			Directiva ngClass 
+
+			al precio -> si es mayor a 80, que tenga sus caracteristicas de la clase altoPrecio en el css 
+			[class.altoPrecio]="deportiva.precio >= 80" 
+			
+			Tambien...	
+			Permite poner varias clases de golpe si se cumple una condicion. 
+			[ngClass]="['fondoRojo', 'subrayado']"
+
+			Definir Jsons 
+			Permite poner las clases segun las condiciones, junto a un objeto Json  
+			[ngClass]="{
+						'fondoRojo': deportiva.precio > 100, 
+						'subrayado': deportiva.marca == 'Nike'
+					}"
+		-->
+
+			<span [ngStyle]="{
+				'text-decoration': !deportiva.stock ? 'line-through' : 	'none'
+				}">	{{deportiva.nombre}} -  
+				<strong 
+					[class.altoPrecio]="deportiva.precio >= 80" 
+					[ngClass]="{
+						'fondoRojo': deportiva.precio > 100, 
+						'subrayado': deportiva.marca == 'Nike'
+					}"
+				>		
+					S/. {{deportiva.precio}}
+				</strong>
+			</span>
+
+			<!-- 
+			Directiva ngIf -> Permite poner condiciones segun querramos.
+
+			ngIf = Si el precio es menor o igual a 80, que ponga OFERTA!
+
+			Con ternaria -> Operador en JS que tiene tres operandos/condiciones.
+
+			[style.background] = Si el precio es mayor o igual a 80 entonces el background será rojo, si no, que sea transparente  
+			-->
+			<span *ngIf="deportiva.precio <= 80"
+				[style.background] = "deportiva.precio <= 80 ? 'red' : 'transparent'"
+				[style.color] = "deportiva.precio <= 80 ? 'white' : 'transparent'"> ¡En oferta! </span>
+
+	</li>
+</ul>
+
+<!-- Directiva ngSwitch -> Permite evaluar/comprobar una serie de casos de una propiedad/variable -->
+<p>El color de la mayoria de nuestras zapatillas es:</p>
+<!-- Ejemplo con la propiedad color para el two way databinding 
+	Se modifica de manera bidireccional, automatica e instantanea
+	la propiedad de color, cumpliendo con el switch  
+-->
+<input type="text" [(ngModel)]="color" >
+<!-- Evaluar la propiedad color -->
+<ul [ngSwitch]= "color">
+	<!-- Caso 1, en el caso que el color sea amarillo.... -->
+	<li *ngSwitchCase= "'yellow'">
+		<!-- [ngStyle] -> directiva de angular para aplicar estilos
+			Se muestra el amarillo ya que en el constructor asignamos ese color a la propiedad color
+		-->
+		El color predominante es el <span [ngStyle]="{'background': color}">amarillo</span>
+	</li>
+	<li *ngSwitchCase= "'red'">
+		El color predominante es el <span [ngStyle]="{'background': color}">rojo</span>
+	</li>
+	<li *ngSwitchCase= "'blue'">
+		El color predominante es el <span [ngStyle]="{'background': color}">azul</span>
+	</li>
+	<li *ngSwitchCase= "'orange'">
+		El color predominante es el <span [ngStyle]="{'background': color}">naranja</span>
+	</li>
+</ul>
+
